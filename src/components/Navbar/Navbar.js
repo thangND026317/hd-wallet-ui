@@ -42,13 +42,13 @@ const Navbar = () => {
               <Link to="/" className="nav-links" onClick={closeMobileMenu}>Home</Link>
             </li>
             <li className="nav-item">
-              <Link to="/products" className="nav-links" onClick={closeMobileMenu}>Products</Link>
+              <Link to="/new-wallet" className="nav-links" onClick={closeMobileMenu}>Products</Link>
             </li>
             <li className="nav-item">
-              <Link to="/services" className="nav-links" onClick={closeMobileMenu}>Services</Link>
+              <Link to="/restore-wallet" className="nav-links" onClick={closeMobileMenu}>Services</Link>
             </li>
             <li className="nav-item">
-              <Link to="/sign-up" className="nav-links-mobile" onClick={closeMobileMenu}>Sign Up</Link>
+              <Link to="/sign-up" className="nav-links-mobile" onClick={closeMobileMenu}>HD Wallet</Link>
             </li>
           </ul>
 
