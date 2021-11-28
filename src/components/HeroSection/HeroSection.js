@@ -7,17 +7,19 @@ import './HeroSection.css'
 const HeroSection = () => {
   return (
     <div className='hero-container'>
+      <h1>GET STARTED</h1>
+      <p>Create new wallet or restore your wallet</p>
       <div className='hero-btns'>
-        <Button className='btns' buttonStyle='btn--primary' buttonSize='btn--large'>
+        <Button className='btns' buttonStyle='btn--outline' buttonSize='btn--larger' to='/new-wallet'>
           CREATE WALLET
         </Button>
 
-        <Button className='btns' buttonStyle='btn--primary' buttonSize='btn--large'>
-          RESTORE WALLET <i className='far fa-play-circle' />
+        <Button className='btns' buttonStyle='btn--outline' buttonSize='btn--larger' to='/restore-wallet'>
+          RESTORE WALLET
         </Button>
       </div>
     </div>
   )
 }
 
-export default HeroSection
+export default HeroSection;

@@ -2,7 +2,9 @@ import React from 'react';
 import '../../App.css';
 
 const ImportWallet = () => {
-  return <h1 className='services'>Restore Wallet</h1>;
+  return <div>
+    <h1 className='restore-wallet'>Restore Wallet</h1>
+  </div>;
 }
 
 export default ImportWallet;

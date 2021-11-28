@@ -52,7 +52,7 @@ const Navbar = () => {
             </li>
           </ul>
 
-          {button && <Button buttonStyle='btn--outline'>SIGN UP</Button>}
+          {button && <Button buttonStyle='btn--outline' to='/hd-wallet'>MAIN ACCOUNT</Button>}
         </div>
       </nav>
     </Fragment>
