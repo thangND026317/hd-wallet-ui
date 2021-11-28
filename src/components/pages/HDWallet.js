@@ -7,9 +7,9 @@ const HDWallet = (props) => {
   const mnemonic = props.location.mnemonic;
   const seed = hdcore.account.createSeed(mnemonic);
   const master = hdcore.account.createMasterAccount('501', seed);
-  const path = hdcore.account.getPath(0, 501, 1);
+  // const path = hdcore.account.getPath(0, 501, 1);
   //("m/44'/501'/0'/0'/1'")
-  const acc1 = hdcore.account.createChildAccount('501', seed, path);
+  // const acc1 = hdcore.account.createChildAccount('501', seed, path);
   const transaction = hdcore.account.getTransaction('501');
 
   console.log(hdcore.account.getAddress(master.pub, '501'));

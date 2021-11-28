@@ -1,9 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../../App.css';
+import '../HeroSection/HeroSection.css';
+import Button from './../Button/Button';
+import * as hdcore from 'hdcore-ts';
 
 const ImportWallet = () => {
-  return <div>
-    <h1 className='restore-wallet'>Restore Wallet</h1>
+  const [mnemonic, setMnemonic] = useState('');
+
+  const handleOnChange = (event) => {
+    console.log(event.target.value);
+    setMnemonic(event.target.value);
+  }
+
+  return <div className='new-wallet'>
+    <div className='hero-container'>
+      <h1>IMPORT YOUR WALLET</h1>
+      <p>Copy and paste your mnemonic code to import your wallet</p>
+      <br />
+      <textarea className="textarea" onChange={handleOnChange} />
+      <br />
+
+      <div className='hero-btns'>
+        <Button className='btns' buttonStyle='btn--outline' buttonSize='btn--larger' to='/hd-wallet' mnemonic={mnemonic}>
+          IMPORT WALLET
+        </Button>
+      </div>
+    </div>
   </div>;
 }
 
