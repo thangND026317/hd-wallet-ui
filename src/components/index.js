@@ -1,6 +1,6 @@
 export { default as Navbar } from './Navbar/Navbar';
 export { default as Button } from './Button/Button';
-export { default as HeroSection } from './HeroSection/HeroSection';
+// export { default as HeroSection } from './HeroSection/HeroSection';
 export { default as Home } from './pages/Home';
 export { default as ImportWallet } from './pages/ImportWallet';
 export { default as CreateWallet } from './pages/CreateWallet';

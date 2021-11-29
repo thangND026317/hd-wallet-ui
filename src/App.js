@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import { Navbar, Home, CreateWallet, ImportWallet, HDWallet, Footer } from './components';
 
-import './App.css';
+// import './App.css';
 
 function App() {
   return (
