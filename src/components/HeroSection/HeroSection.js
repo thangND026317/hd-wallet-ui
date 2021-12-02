@@ -8,14 +8,14 @@ const HeroSection = () => {
   return (
     <div className='hero-container'>
       <h1>GET STARTED</h1>
-      <p>Create new wallet or restore your wallet</p>
+      <p>Create new wallet or import your wallet</p>
       <div className='hero-btns'>
         <Button className='btns' buttonStyle='btn--outline' buttonSize='btn--larger' to='/new-wallet'>
           CREATE WALLET
         </Button>
 
-        <Button className='btns' buttonStyle='btn--outline' buttonSize='btn--larger' to='/restore-wallet'>
-          RESTORE WALLET
+        <Button className='btns' buttonStyle='btn--outline' buttonSize='btn--larger' to='/import-wallet'>
+          IMPORT WALLET
         </Button>
       </div>
     </div>

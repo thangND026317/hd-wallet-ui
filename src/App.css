@@ -7,11 +7,18 @@
 
 .home,
 .new-wallet,
-.restore-wallet,
-.hd-wallet {
+.import-wallet {
   display: flex;
   height: 90vh;
   align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+}
+
+.hd-wallet {
+  display: flex;
+  height: 90vh;
+  align-items: flex-start;
   justify-content: center;
   font-size: 3rem;
 }
@@ -34,20 +41,20 @@
   font-size: 100px;
 }
 
-.restore-wallet {
+.import-wallet {
   background-image: url("/src/static/images/img-2.jpg");
   background-position: center;
-  background-size: fill;
+  background-size: cover;
   background-repeat: no-repeat;
   color: #fff;
   font-size: 100px;
 }
 
 .hd-wallet {
-  background-image: url("/src/static/images/img-9.jpg");
+  /* background-image: url("/src/static/images/img-9.jpg"); */
   background-position: center;
-  background-size: fill;
+  background-size: cover;
   background-repeat: no-repeat;
-  color: #fff;
+  background-color: #242424;
   font-size: 100px;
 }

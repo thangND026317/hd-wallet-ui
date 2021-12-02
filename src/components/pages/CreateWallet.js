@@ -5,13 +5,13 @@ import Button from './../Button/Button';
 import * as hdcore from 'hdcore-ts';
 
 const CreateWallet = () => {
-  const [mnemonic, setMnemonic] = useState(hdcore.account.createMnemonic())
+  const [mnemonic, setMnemonic] = useState(hdcore.account.createMnemonic());
 
   const onClick = () => {
     const newMnemonic = hdcore.account.createMnemonic();
-    // const newMnemonic = 'suspect science dry empty high remain envelope motion employ nature hover trophy average age skirt blanket prize cry couch power employ circle vague bitter';
     setMnemonic(newMnemonic);
   }
+
   return <div className='new-wallet'>
     <div className='hero-container'>
       <h1>YOUR MNEMONIC CODE</h1>
