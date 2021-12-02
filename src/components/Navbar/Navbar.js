@@ -42,17 +42,17 @@ const Navbar = () => {
               <Link to="/" className="nav-links" onClick={closeMobileMenu}>Home</Link>
             </li>
             <li className="nav-item">
-              <Link to="/new-wallet" className="nav-links" onClick={closeMobileMenu}>Products</Link>
+              <Link to="/new-wallet" className="nav-links" onClick={closeMobileMenu}>Create wallet</Link>
             </li>
             <li className="nav-item">
-              <Link to="/restore-wallet" className="nav-links" onClick={closeMobileMenu}>Services</Link>
+              <Link to="/import-wallet" className="nav-links" onClick={closeMobileMenu}>Import Wallet</Link>
             </li>
             <li className="nav-item">
-              <Link to="/sign-up" className="nav-links-mobile" onClick={closeMobileMenu}>HD Wallet</Link>
+              <Link to="/hd-wallet" className="nav-links-mobile" onClick={closeMobileMenu}>HD Wallet</Link>
             </li>
           </ul>
 
-          {button && <Button buttonStyle='btn--outline' to='/hd-wallet'>MAIN ACCOUNT</Button>}
+          {button && <Button buttonStyle='btn--outline' to='/hd-wallet'>HD Wallet</Button>}
         </div>
       </nav>
     </Fragment>

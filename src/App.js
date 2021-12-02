@@ -11,11 +11,11 @@ function App() {
       <Router>
         <Navbar />
 
-        {/* Main page: Home -> restore/new wallet -> main wallet -> logout/delete -> Home */}
+        {/* Main page: Home -> import/new wallet -> main wallet -> logout/delete -> Home */}
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/new-wallet" exact component={CreateWallet} />
-          <Route path="/restore-wallet" exact component={ImportWallet} />
+          <Route path="/import-wallet" exact component={ImportWallet} />
           <Route path="/hd-wallet" exact component={HDWallet} />
         </Switch>
 
