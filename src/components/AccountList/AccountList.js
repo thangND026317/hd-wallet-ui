@@ -6,7 +6,7 @@ import ReceiveIcon from '@mui/icons-material/WorkOutline';
 
 import './AccountList.css';
 
-const AccountList = ({ balance, account }) => {
+const AccountList = ({ account, balance }) => {
   return <List disablePadding>
     <ListItem disablePadding>
       <ListItemButton
@@ -32,6 +32,7 @@ const AccountList = ({ balance, account }) => {
       >
         Receive
       </Button>
+
       <Button
         variant="outlined"
         color="primary"
