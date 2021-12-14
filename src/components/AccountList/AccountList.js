@@ -1,48 +1,96 @@
 import React from 'react';
-import { List, ListItem, ListItemButton, ListItemText, Button } from '@mui/material';
-import { ExpandLess, ExpandMore } from '@mui/icons-material';
+import { List, ListItem, ListItemButton, ListItemText, Button, Paper, AppBar, Toolbar, Typography, Tooltip, IconButton } from '@mui/material';
+import { ExpandMore } from '@mui/icons-material';
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import RefreshIcon from '@mui/icons-material/Refresh';
 import SendIcon from '@mui/icons-material/Send';
 import ReceiveIcon from '@mui/icons-material/WorkOutline';
 
 import './AccountList.css';
 
 const AccountList = ({ account, balance }) => {
-  return <List disablePadding>
-    <ListItem disablePadding>
-      <ListItemButton
-        onClick={() => console.log("Clicked listItemButton")}
-        sx={{
-          "&:hover": {
-            backgroundColor: "#adadad",
-          }
-        }}>
-        <ListItemText
-          primary={`${balance} SOL`}
-          secondary={account} />
-        <ExpandMore />
-      </ListItemButton>
-    </ListItem>
+  return <Paper style={{ width: '80%', marginTop: '20px' }}>
+    <AppBar position="static" color="default" elevation={1}>
+      <Toolbar>
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          Main account
+        </Typography>
 
-    <div className="button-container">
-      <Button
-        variant="outlined"
-        color="primary"
-        startIcon={<ReceiveIcon />}
-        onClick={() => console.log('AccountList - Receive')}
-      >
-        Receive
-      </Button>
+        <Tooltip title="Push" arrow>
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+          >
+            <ArrowUpwardIcon />
+          </IconButton>
+        </Tooltip>
 
-      <Button
-        variant="outlined"
-        color="primary"
-        startIcon={<SendIcon />}
-        onClick={() => console.log('AccountList - Send')}
-      >
-        Send
-      </Button>
-    </div>
-  </List>
+        <Tooltip title="Pull" arrow>
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+          >
+            <ArrowDownwardIcon />
+          </IconButton>
+        </Tooltip>
+
+        <Tooltip title="Refresh" arrow>
+          <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            style={{ marginRight: -12 }}
+          >
+            <RefreshIcon />
+          </IconButton>
+        </Tooltip>
+
+
+      </Toolbar>
+    </AppBar>
+    <List disablePadding>
+      <ListItem disablePadding>
+        <ListItemButton
+          onClick={() => console.log("Clicked listItemButton")}
+          sx={{
+            "&:hover": {
+              backgroundColor: "#adadad",
+            }
+          }}>
+          <ListItemText
+            primary={`${balance} SOL`}
+            secondary={account} />
+          <ExpandMore />
+        </ListItemButton>
+      </ListItem>
+
+      <div className="button-container">
+        <Button
+          variant="outlined"
+          color="primary"
+          startIcon={<ReceiveIcon />}
+        // onClick={/* Request airdrop function */}
+        >
+          Air-drop
+        </Button>
+
+        <Button
+          variant="outlined"
+          color="primary"
+          startIcon={<SendIcon />}
+        // onClick={/* Send function */}
+        >
+          Send
+        </Button>
+      </div>
+    </List>
+  </Paper>
 }
 
 export default AccountList;
