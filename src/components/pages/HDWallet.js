@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import '../../App.css';
-import AccountList from '../AccountList/AccountList';
 import * as hdcore from 'hdcore-ts';
+import { Tooltip, IconButton } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+
+import AccountList from '../AccountList/AccountList';
+
+import '../../App.css';
 
 const DEFAULT_CHILD = 2021;
 
@@ -32,12 +36,20 @@ const HDWallet = (props) => {
     getBalance();
   }, []);
 
-
-  // transaction.get_balance(child1.pub).then(result => console.log('Default child balance: ', result));
-
   return <div className='hd-wallet'>
-    <AccountList account={accounts[0]} balance={balance} />
-    <AccountList account={accounts[1]} balance={balance1} />
+    <div className="hero-container-other">
+      <AccountList account={accounts[0]} balance={balance} />
+      <AccountList account={accounts[1]} balance={balance1} />
+
+      <Tooltip title="Add a child wallet" arrow>
+        <IconButton
+          size="large"
+          color="primary"
+        >
+          <AddIcon />
+        </IconButton>
+      </Tooltip>
+    </div>
   </div>;
 }
 
