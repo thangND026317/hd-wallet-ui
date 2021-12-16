@@ -6,7 +6,7 @@
 }
 
 .home,
-.new-wallet,
+.create-wallet,
 .import-wallet {
   display: flex;
   height: 120vh;
@@ -32,7 +32,7 @@
   font-size: 100px;
 }
 
-.new-wallet {
+.create-wallet {
   background-image: url("/src/static/images/img-8.jpg");
   background-position: center;
   background-size: cover;

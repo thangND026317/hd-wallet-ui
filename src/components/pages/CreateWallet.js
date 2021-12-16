@@ -15,7 +15,7 @@ const CreateWallet = () => {
   // const saveMnemonic = (mnemonic) => { localStorage.setItem('mnemonic', mnemonic) }
 
 
-  return <div className='new-wallet'>
+  return <div className='create-wallet'>
     <div className='hero-container'>
       <h1>YOUR MNEMONIC CODE</h1>
       <p>Copy and save the mnemonic code to backup your wallet</p>
