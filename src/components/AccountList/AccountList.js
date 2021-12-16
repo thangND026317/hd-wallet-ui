@@ -12,16 +12,24 @@ import { getAddress, getBalance, getAirdrop } from '../helpers/utils';
 
 import './AccountList.css';
 
-const AccountList = ({ account, name }) => {
+const AccountList = ({ pub }) => {
   const [balance, setBalance] = useState(0);
   const [expanding, setExpanding] = useState(false);
-  const [popup, setPopup] = useState(false);
+  const [airdroping, setAirdroping] = useState(false);
+  // const [popup, setPopup] = useState(false);
 
-  const openPopup = () => setPopup(true);
-  const closePopup = () => setPopup(false);
+  // const openPopup = () => setPopup(true);
+  // const closePopup = () => setPopup(false);
 
   const refreshBalance = async () => {
-    setBalance(await getBalance(account.pub));
+    setBalance(await getBalance(pub));
+  }
+
+  const airdrop = async () => {
+    setAirdroping(true);
+    await getAirdrop(pub);
+    setAirdroping(false);
+    refreshBalance();
   }
 
   useEffect(() => {
@@ -32,7 +40,7 @@ const AccountList = ({ account, name }) => {
     <AppBar position="static" color="default" elevation={1}>
       <Toolbar>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          {getAddress(account.pub)}
+          {getAddress(pub)}
         </Typography>
 
         <Tooltip title="Push" arrow>
@@ -83,7 +91,8 @@ const AccountList = ({ account, name }) => {
           }}>
           <ListItemText
             primary={`${balance} SOL`}
-            secondary={account} />
+          // secondary={keypair} 
+          />
           {expanding ? <ExpandLess /> : <ExpandMore />}
         </ListItemButton>
       </ListItem>
@@ -93,22 +102,24 @@ const AccountList = ({ account, name }) => {
           variant="outlined"
           color="primary"
           startIcon={<ReceiveIcon />}
-          onClick={() => getAirdrop(account.pub)}
+          onClick={airdrop}
+          disabled={airdroping}
         >
-          Air-drop
+          {!airdroping ? "Airdrop" : "Requested"}
         </Button>
+
 
         <Button
           variant="outlined"
           color="primary"
           startIcon={<SendIcon />}
-          onClick={openPopup}
+        // onClick={openPopup}
         >
           Send
         </Button>
       </div>}
     </List>
-    {popup && <Modal open={popup} onClose={closePopup} />}
+    {/* {popup && <Modal open={popup} onClose={closePopup} />} */}
   </Paper>
 }
 

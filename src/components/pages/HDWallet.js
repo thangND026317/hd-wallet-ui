@@ -22,11 +22,12 @@ const HDWallet = (props) => {
 
   // accounts.push(master);
   // accounts.push(default_child);
+  //priv={master.prv} 
 
   return <div className='hd-wallet'>
     <div className="hero-container-other">
-      <AccountList account={master} />
-      {/* <AccountList account={default_child} /> */}
+      <AccountList pub={master.pub} />
+      <AccountList pub={default_child.pub} />
 
       <Tooltip title="Add a child wallet" arrow>
         <IconButton
