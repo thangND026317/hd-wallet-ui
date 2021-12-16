@@ -9,7 +9,7 @@ const ImportWallet = () => {
 
   const handleOnChange = event => setMnemonic(event.target.value);
 
-  // const saveMnemonic = (mnemonic) => { localStorage.setItem('mnemonic', mnemonic) }
+  // const isValidMnemonic = (mnemonic) => { localStorage.setItem('mnemonic', mnemonic) }
 
   return <div className='import-wallet'>
     <div className='hero-container'>
@@ -24,7 +24,7 @@ const ImportWallet = () => {
           className='btns'
           buttonStyle='btn--outline'
           buttonSize='btn--larger'
-          to='/hd-wallet'
+          to={mnemonic ? '/hd-wallet' : ''}
           mnemonic={mnemonic}>
           IMPORT WALLET
         </Button>

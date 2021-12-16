@@ -10,11 +10,11 @@ const HeroSection = () => {
       <h1>GET STARTED</h1>
       <p>Create new wallet or import your wallet</p>
       <div className='hero-btns'>
-        <Button className='btns' buttonStyle='btn--outline' buttonSize='btn--larger' to='/create-wallet'>
+        <Button className='btn' buttonStyle='btn--outline' buttonSize='btn--larger' to='/create-wallet'>
           CREATE WALLET
         </Button>
 
-        <Button className='btns' buttonStyle='btn--outline' buttonSize='btn--larger' to='/import-wallet'>
+        <Button className='btn' buttonStyle='btn--outline' buttonSize='btn--larger' to='/import-wallet'>
           IMPORT WALLET
         </Button>
       </div>
