@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { List, ListItem, ListItemButton, ListItemText, Button, Paper, AppBar, Toolbar, Typography, Tooltip, IconButton } from '@mui/material';
-import { ExpandMore } from '@mui/icons-material';
+import { ExpandMore, ExpandLess } from '@mui/icons-material';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import RefreshIcon from '@mui/icons-material/Refresh';
@@ -10,6 +10,8 @@ import ReceiveIcon from '@mui/icons-material/WorkOutline';
 import './AccountList.css';
 
 const AccountList = ({ account, balance }) => {
+  const [expanding, setExpanding] = useState('false')
+
   return <Paper style={{ width: '80%', marginTop: '20px' }}>
     <AppBar position="static" color="default" elevation={1}>
       <Toolbar>
@@ -57,7 +59,7 @@ const AccountList = ({ account, balance }) => {
     <List disablePadding>
       <ListItem disablePadding>
         <ListItemButton
-          onClick={() => console.log("Clicked listItemButton")}
+          onClick={() => setExpanding(!expanding)}
           sx={{
             "&:hover": {
               backgroundColor: "#adadad",
@@ -66,11 +68,11 @@ const AccountList = ({ account, balance }) => {
           <ListItemText
             primary={`${balance} SOL`}
             secondary={account} />
-          <ExpandMore />
+          {expanding ? <ExpandLess /> : <ExpandMore />}
         </ListItemButton>
       </ListItem>
 
-      <div className="button-container">
+      {expanding && <div className="button-container">
         <Button
           variant="outlined"
           color="primary"
@@ -88,7 +90,8 @@ const AccountList = ({ account, balance }) => {
         >
           Send
         </Button>
-      </div>
+      </div>}
+
     </List>
   </Paper>
 }

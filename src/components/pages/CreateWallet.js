@@ -12,19 +12,30 @@ const CreateWallet = () => {
     setMnemonic(newMnemonic);
   }
 
+  // const saveMnemonic = (mnemonic) => { localStorage.setItem('mnemonic', mnemonic) }
+
+
   return <div className='new-wallet'>
     <div className='hero-container'>
       <h1>YOUR MNEMONIC CODE</h1>
       <p>Copy and save the mnemonic code to backup your wallet</p>
+
       <br />
-      <textarea className="textarea" value={mnemonic}/>
-      <br />
-      <button className='btns btn--primary btn--medium' onClick={onClick}>Refresh</button>
+      <textarea className="textarea" value={mnemonic} readOnly />
+      <Button className='btns' buttonStyle='btn--primary' buttonSize='btn--large' onClick={onClick}>Refresh</Button>
+
       <div className='hero-btns'>
-        <Button className='btns' buttonStyle='btn--outline' buttonSize='btn--larger' to='/hd-wallet' mnemonic={mnemonic}>
+        <Button
+          className='btns'
+          buttonStyle='btn--outline'
+          buttonSize='btn--larger'
+          to='/hd-wallet'
+          // onClick={() => saveMnemonic(mnemonic)}
+          mnemonic={mnemonic}>
           CREATE WALLET
         </Button>
       </div>
+
     </div>
   </div>;
 }

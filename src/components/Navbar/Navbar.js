@@ -42,7 +42,7 @@ const Navbar = () => {
               <Link to="/" className="nav-links" onClick={closeMobileMenu}>Home</Link>
             </li>
             <li className="nav-item">
-              <Link to="/new-wallet" className="nav-links" onClick={closeMobileMenu}>Create wallet</Link>
+              <Link to="/create-wallet" className="nav-links" onClick={closeMobileMenu}>Create wallet</Link>
             </li>
             <li className="nav-item">
               <Link to="/import-wallet" className="nav-links" onClick={closeMobileMenu}>Import Wallet</Link>

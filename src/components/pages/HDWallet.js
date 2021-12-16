@@ -13,7 +13,8 @@ const HDWallet = (props) => {
   const [balance, setBalance] = useState('');
   const [balance1, setBalance1] = useState('');
   const accounts = [];
-  const mnemonic = props.location.mnemonic;
+  const mnemonic = props.location.mnemonic ? props.location.mnemonic : localStorage.getItem('mnemonic');
+
   const seed = hdcore.account.createSeed(mnemonic);
   const master = hdcore.account.createMasterAccount('501', seed);
   const path = hdcore.account.getPath(0, 501, DEFAULT_CHILD);

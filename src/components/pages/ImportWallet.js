@@ -9,19 +9,27 @@ const ImportWallet = () => {
 
   const handleOnChange = event => setMnemonic(event.target.value);
 
+  // const saveMnemonic = (mnemonic) => { localStorage.setItem('mnemonic', mnemonic) }
+
   return <div className='import-wallet'>
     <div className='hero-container'>
       <h1>IMPORT YOUR WALLET</h1>
       <p>Copy and paste your mnemonic code to import your wallet</p>
+
       <br />
       <textarea className="textarea" onChange={handleOnChange} value={mnemonic} />
-      <br />
 
       <div className='hero-btns'>
-        <Button className='btns' buttonStyle='btn--outline' buttonSize='btn--larger' to='/hd-wallet' mnemonic={mnemonic}>
+        <Button
+          className='btns'
+          buttonStyle='btn--outline'
+          buttonSize='btn--larger'
+          to='/hd-wallet'
+          mnemonic={mnemonic}>
           IMPORT WALLET
         </Button>
       </div>
+
     </div>
   </div>;
 }

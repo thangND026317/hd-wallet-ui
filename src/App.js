@@ -14,7 +14,7 @@ function App() {
         {/* Main page: Home -> import/new wallet -> main wallet -> logout/delete -> Home */}
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/new-wallet" exact component={CreateWallet} />
+          <Route path="/create-wallet" exact component={CreateWallet} />
           <Route path="/import-wallet" exact component={ImportWallet} />
           <Route path="/hd-wallet" exact component={HDWallet} />
         </Switch>
