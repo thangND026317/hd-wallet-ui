@@ -30,7 +30,6 @@ const CreateWallet = () => {
           buttonStyle='btn--outline'
           buttonSize='btn--larger'
           to='/hd-wallet'
-          // onClick={() => saveMnemonic(mnemonic)}
           mnemonic={mnemonic}>
           CREATE WALLET
         </Button>

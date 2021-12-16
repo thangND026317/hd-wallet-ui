@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { List, ListItem, ListItemButton, ListItemText, Button, Paper, AppBar, Toolbar, Typography, Tooltip, IconButton } from '@mui/material';
 import { ExpandMore, ExpandLess } from '@mui/icons-material';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
@@ -7,16 +7,32 @@ import RefreshIcon from '@mui/icons-material/Refresh';
 import SendIcon from '@mui/icons-material/Send';
 import ReceiveIcon from '@mui/icons-material/WorkOutline';
 
+import Modal from '../Modal/Modal';
+import { getAddress, getBalance, getAirdrop } from '../helpers/utils';
+
 import './AccountList.css';
 
-const AccountList = ({ account, balance }) => {
-  const [expanding, setExpanding] = useState('false')
+const AccountList = ({ account, name }) => {
+  const [balance, setBalance] = useState(0);
+  const [expanding, setExpanding] = useState(false);
+  const [popup, setPopup] = useState(false);
+
+  const openPopup = () => setPopup(true);
+  const closePopup = () => setPopup(false);
+
+  const refreshBalance = async () => {
+    setBalance(await getBalance(account.pub));
+  }
+
+  useEffect(() => {
+    refreshBalance();
+  }, []);
 
   return <Paper style={{ width: '80%', marginTop: '20px' }}>
     <AppBar position="static" color="default" elevation={1}>
       <Toolbar>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          Main account
+          {getAddress(account.pub)}
         </Typography>
 
         <Tooltip title="Push" arrow>
@@ -48,14 +64,14 @@ const AccountList = ({ account, balance }) => {
             color="inherit"
             aria-label="menu"
             style={{ marginRight: -12 }}
+            onClick={refreshBalance}
           >
             <RefreshIcon />
           </IconButton>
         </Tooltip>
-
-
       </Toolbar>
     </AppBar>
+
     <List disablePadding>
       <ListItem disablePadding>
         <ListItemButton
@@ -77,7 +93,7 @@ const AccountList = ({ account, balance }) => {
           variant="outlined"
           color="primary"
           startIcon={<ReceiveIcon />}
-        // onClick={/* Request airdrop function */}
+          onClick={() => getAirdrop(account.pub)}
         >
           Air-drop
         </Button>
@@ -86,13 +102,13 @@ const AccountList = ({ account, balance }) => {
           variant="outlined"
           color="primary"
           startIcon={<SendIcon />}
-        // onClick={/* Send function */}
+          onClick={openPopup}
         >
           Send
         </Button>
       </div>}
-
     </List>
+    {popup && <Modal open={popup} onClose={closePopup} />}
   </Paper>
 }
 
