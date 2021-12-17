@@ -23,8 +23,7 @@ const HDWallet = () => {
   const default_child = hdcore.account.createChildAccount('501', seed, path);
 
   const createChild = (index) => {
-    const newPath = hdcore.account.getPath(501, 2020);
-
+    const newPath = hdcore.account.getPath(501, index);
     const newChild = hdcore.account.createChildAccount('501', seed, newPath);
     accounts.push(newChild);
     setAccounts(accounts);
