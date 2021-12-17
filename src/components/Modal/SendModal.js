@@ -4,13 +4,12 @@ import Button from '../Button/Button';
 
 import './Modal.css';
 
-const Modal = ({ children, open, onClose, onConfirm }) => {
-  const [input, setInput] = useState('');
+const SendModal = ({ children, open, onClose, onConfirm }) => {
+  const [address, setAddress] = useState('');
+  const [amount, setAmount] = useState('');
 
-  const handleOnChange = event => setInput(event.target.value);
-
-  const handleOnConfirm = (index) => {
-    onConfirm(index);
+  const handleOnConfirm = () => {
+    onConfirm(address, amount);
     onClose();
   }
 
@@ -20,12 +19,20 @@ const Modal = ({ children, open, onClose, onConfirm }) => {
     <div className="modal-container">
       <h1>{children}</h1>
       <br />
-      <label htmlFor='child-index'>Child index</label>
+      <label htmlFor='address'>Receiver's address:</label>
       <input
-        id='child-index'
+        id='address'
         type="tel"
-        onChange={handleOnChange}
-        value={input}
+        onChange={event => setAddress(event.target.value)}
+        value={address}
+      />
+
+      <label htmlFor='amount'>Amount:</label>
+      <input
+        id='amount'
+        type="tel"
+        onChange={event => setAmount(event.target.value)}
+        value={amount}
       />
 
       <div className="modal-btns">
@@ -39,7 +46,7 @@ const Modal = ({ children, open, onClose, onConfirm }) => {
         <Button className='btn'
           buttonStyle='btn--primary'
           buttonSize='btn--medium'
-          onClick={() => handleOnConfirm(input)}
+          onClick={handleOnConfirm}
         >
           Confirm
         </Button>
@@ -49,4 +56,4 @@ const Modal = ({ children, open, onClose, onConfirm }) => {
   </div>, document.getElementById("portal-root"))
 }
 
-export default Modal;
+export default SendModal;

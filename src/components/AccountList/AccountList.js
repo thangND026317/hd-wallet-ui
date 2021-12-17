@@ -7,19 +7,20 @@ import RefreshIcon from '@mui/icons-material/Refresh';
 import SendIcon from '@mui/icons-material/Send';
 import ReceiveIcon from '@mui/icons-material/WorkOutline';
 
-import Modal from '../Modal/Modal';
-import { getAddress, getBalance, getAirdrop } from '../helpers/utils';
+import SendModal from '../Modal/SendModal';
+import { getAddress, getBalance, getAirdrop, sendTransaction } from '../helpers/utils';
 
 import './AccountList.css';
 
-const AccountList = ({ pub }) => {
+const AccountList = ({ pub, prv }) => {
   const [balance, setBalance] = useState(0);
   const [expanding, setExpanding] = useState(false);
   const [airdroping, setAirdroping] = useState(false);
-  // const [popup, setPopup] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [popup, setPopup] = useState(false);
 
-  // const openPopup = () => setPopup(true);
-  // const closePopup = () => setPopup(false);
+  const openPopup = () => setPopup(true);
+  const closePopup = () => setPopup(false);
 
   const refreshBalance = async () => {
     setBalance(await getBalance(pub));
@@ -29,6 +30,13 @@ const AccountList = ({ pub }) => {
     setAirdroping(true);
     await getAirdrop(pub);
     setAirdroping(false);
+    refreshBalance();
+  }
+
+  const onConfirm = async (receiverAddress, amount) => {
+    setSending(true);
+    await sendTransaction(pub, prv, receiverAddress,amount);
+    setSending(false);
     refreshBalance();
   }
 
@@ -113,13 +121,14 @@ const AccountList = ({ pub }) => {
           variant="outlined"
           color="primary"
           startIcon={<SendIcon />}
-        // onClick={openPopup}
+          onClick={openPopup}
+          disabled={sending}
         >
-          Send
+          {!sending ? "Send" : "Sent"}
         </Button>
       </div>}
     </List>
-    {/* {popup && <Modal open={popup} onClose={closePopup} />} */}
+    {popup && <SendModal open={popup} onClose={closePopup} onConfirm={onConfirm} />}
   </Paper>
 }
 

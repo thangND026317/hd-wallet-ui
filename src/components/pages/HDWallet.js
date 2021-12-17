@@ -31,8 +31,8 @@ const HDWallet = () => {
 
   return <div className='hd-wallet'>
     <div className="hero-container">
-      <AccountList pub={master.pub} />
-      <AccountList pub={default_child.pub} />
+      <AccountList pub={master.pub} prv={master.prv} />
+      <AccountList pub={default_child.pub} prv={default_child.prv}/>
       {accounts.map((account) => <AccountList key={account.pub + 1} pub={account.pub} />)}
 
       <Tooltip title="Add a child wallet" arrow>
