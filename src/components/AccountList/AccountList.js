@@ -15,7 +15,7 @@ import './AccountList.css';
 const AccountList = ({ pub, prv }) => {
   const [balance, setBalance] = useState(0);
   const [expanding, setExpanding] = useState(false);
-  const [airdroping, setAirdroping] = useState(false);
+  const [airdropping, setAirdropping] = useState(false);
   const [sending, setSending] = useState(false);
   const [popup, setPopup] = useState(false);
 
@@ -27,9 +27,9 @@ const AccountList = ({ pub, prv }) => {
   }
 
   const airdrop = async () => {
-    setAirdroping(true);
+    setAirdropping(true);
     await getAirdrop(pub);
-    setAirdroping(false);
+    setAirdropping(false);
     refreshBalance();
   }
 
@@ -111,9 +111,9 @@ const AccountList = ({ pub, prv }) => {
           color="primary"
           startIcon={<ReceiveIcon />}
           onClick={airdrop}
-          disabled={airdroping}
+          disabled={airdropping}
         >
-          {!airdroping ? "Airdrop" : "Requested"}
+          {!airdropping ? "Airdrop" : "Requested"}
         </Button>
 
 
