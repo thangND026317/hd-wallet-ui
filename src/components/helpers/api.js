@@ -35,7 +35,8 @@ export function push(purpose, address) {
       address: localStorage.getItem('masterAddress'),
       chain: coin_type,
       purpose: purpose,
-      child_address: address    }
+      child_address: address
+    }
   };
 
   axios.request(options).then(function (response) {
@@ -52,7 +53,7 @@ export function pull(purpose, address) {
     url: 'http://localhost:8080/deleteaddress',
     headers: { 'Content-Type': 'application/json' },
     data: {
-      address: 'master address',
+      address: localStorage.getItem('masterAddress'),
       chain: coin_type,
       purpose: purpose,
       child_address: address
