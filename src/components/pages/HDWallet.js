@@ -74,7 +74,7 @@ const HDWallet = () => {
     <div className="hero-container">
       {/* Create by default */}
       <AccountList pub={master.pub} prv={master.prv} purpose="Master wallet" />
-      <AccountList pub={default_child.pub} prv={default_child.prv} purpose="Default child wallet" childIndex={DEFAULT_CHILD} />
+      <AccountList pub={default_child.pub} prv={default_child.prv} purpose="default" childIndex={DEFAULT_CHILD} />
 
       {accounts.map((account) =>
         <AccountList

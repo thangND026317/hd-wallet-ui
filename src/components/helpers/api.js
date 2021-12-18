@@ -26,7 +26,7 @@ export function createDefault(defaultAddress) {
   });
 }
 
-export function push(purpose) {
+export function push(purpose, address) {
   const options = {
     method: 'POST',
     url: 'http://localhost:8080/pushaddress',
@@ -34,8 +34,8 @@ export function push(purpose) {
     data: {
       address: localStorage.getItem('masterAddress'),
       chain: coin_type,
-      purpose: purpose
-    }
+      purpose: purpose,
+      child_address: address    }
   };
 
   axios.request(options).then(function (response) {
@@ -46,7 +46,7 @@ export function push(purpose) {
 }
 
 
-export function pull(purpose) {
+export function pull(purpose, address) {
   const options = {
     method: 'POST',
     url: 'http://localhost:8080/deleteaddress',
@@ -54,7 +54,8 @@ export function pull(purpose) {
     data: {
       address: 'master address',
       chain: coin_type,
-      purpose: purpose
+      purpose: purpose,
+      child_address: address
     }
   };
 

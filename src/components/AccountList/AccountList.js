@@ -55,30 +55,33 @@ const AccountList = ({ pub, prv, purpose, childIndex = 0 }) => {
           }
         </Typography>
 
+        {(childIndex !== 0) &&
+          <Tooltip title="Push" arrow>
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              onClick={() => push(purpose, getAddress(pub))}
+            >
+              <ArrowUpwardIcon />
+            </IconButton>
+          </Tooltip>
+        }
 
-        <Tooltip title="Push" arrow>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            onClick={() => push(purpose)}
-          >
-            <ArrowUpwardIcon />
-          </IconButton>
-        </Tooltip>
-
-        <Tooltip title="Pull" arrow>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            onClick={() => pull(purpose)}
-          >
-            <ArrowDownwardIcon />
-          </IconButton>
-        </Tooltip>
+        {(childIndex !== 0) &&
+          <Tooltip title="Pull" arrow>
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              onClick={() => pull(purpose, getAddress(pub))}
+            >
+              <ArrowDownwardIcon />
+            </IconButton>
+          </Tooltip>
+        }
 
         <Tooltip title="Refresh" arrow>
           <IconButton
