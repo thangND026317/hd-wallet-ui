@@ -20,20 +20,20 @@ import './Modal.css';
 // }
 
 const SendModal = ({ children, open, onClose, onConfirm }) => {
-  const [receiverAddress, setrReceiverAddress] = useState('');
+  const [receiverAddress, setReceiverAddress] = useState('');
   const [amount, setAmount] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResult, setSearchResult] = useState([]);
 
   const handleOnConfirm = () => {
     onConfirm(receiverAddress, amount);
-    setrReceiverAddress('');
+    setReceiverAddress('');
     setAmount('');
     onClose();
   }
 
   const handleOnClose = () => {
-    setrReceiverAddress('');
+    setReceiverAddress('');
     setAmount('');
     onClose();
   }
@@ -41,7 +41,6 @@ const SendModal = ({ children, open, onClose, onConfirm }) => {
   const handleSearch = async (event) => {
     if (event.key === 'Enter') {
       // if (searchTerm.length < 3) return;
-      // console.log(searchTerm)
       const res = await search(searchTerm);
       console.log(res)
       const dataArr = Object.entries(res).map(([purpose, address]) => {
@@ -84,7 +83,7 @@ const SendModal = ({ children, open, onClose, onConfirm }) => {
       <input
         id="receiver"
         type="text"
-        onChange={event => setrReceiverAddress(event.target.value)}
+        onChange={event => setReceiverAddress(event.target.value)}
         value={receiverAddress}
       />
 

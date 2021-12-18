@@ -85,8 +85,7 @@ export async function search(masterAddress) {
     console.error("thing", error);
   });
 
-  return result
-
+  return result;
 }
 
 // const hdwallet = {

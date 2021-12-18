@@ -19,14 +19,16 @@ const Navbar = () => {
       <div className="navbar-container">
         <h1 className="navbar-left">HD WALLET</h1>
 
-        <div className="navbar-right">
-          <Button
-            buttonStyle='btn--outline'
-            onClick={() => setDeletePopup(true)}
-          >
-            Delete
-          </Button>
-        </div>
+        {localStorage.getItem('mnemonic') &&
+          <div className="navbar-right">
+            <Button
+              buttonStyle='btn--outline'
+              onClick={() => setDeletePopup(true)}
+            >
+              Delete
+            </Button>
+          </div>
+        }
       </div>
     </nav>
 
