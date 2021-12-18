@@ -51,7 +51,8 @@ const SendModal = ({ children, open, onClose, onConfirm }) => {
         >
           Cancel
         </Button>
-        <Button className='btn'
+        <Button
+          className='btn'
           buttonStyle='btn--primary'
           buttonSize='btn--medium'
           onClick={handleOnConfirm}

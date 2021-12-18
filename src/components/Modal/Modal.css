@@ -25,17 +25,18 @@
 }
 
 .modal-container h1,
-label {
+label,
+p {
   color: #fff;
   font-size: 30px;
 }
 
 .modal-container h1 {
-  color: #fff;
   font-size: 30px;
 }
 
-.modal-container label {
+.modal-container label,
+p {
   font-size: 18px;
 }
 

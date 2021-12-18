@@ -2,6 +2,7 @@ import React, { Fragment, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import Button from './../Button/Button';
+import DeleteModal from '../Modal/DeleteModal';
 
 import './Navbar.css';
 
@@ -12,8 +13,8 @@ const Navbar = () => {
 
   const onDelete = () => {
     setDeletePopup(true);
-
     localStorage.clear();
+    setDeletePopup(false);
   }
 
   const showButton = () => {
@@ -34,22 +35,35 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar-container">
         <h1>HD WALLET</h1>
+
+        {/* Mobile interface */}
         <div className="menu-icon" onClick={() => setClick(!click)}>
-          <i className={click ? "fas fa-times" : "fas fa-bars"} />
+          <Button
+            className="menu-icon"
+            buttonStyle='btn--outline'
+            onClick={() => setDeletePopup(true)}
+          >
+            Delete Wallet
+          </Button>
         </div>
 
+        {/* Web interface */}
         <ul className={click ? "nav-menu active" : "nav-menu"}>
           <li className="nav-item">
-            <Link to="/" className="nav-links-mobile" onClick={() => setClick(false)}>Delete Wallet</Link>
+            <Button className="menu-icon" onClick={() => setClick(false)}>Delete</Button>
           </li>
         </ul>
 
-        {button && <Button buttonStyle='btn--outline' to='/' onClick={() => setDeletePopup(true)}>Delete Wallet</Button>}
 
       </div>
     </nav>
 
-    {/* <DeleteModal open={popup} onClose={() => setPopup(false)} onConfirm={onConfirm} /> */}
+    <DeleteModal
+      open={deletePopup}
+      onClose={() => setDeletePopup(false)}
+      onConfirm={onDelete}>
+      Delete Mnemonic & Log Out
+    </DeleteModal>
   </Fragment>
 }
 
