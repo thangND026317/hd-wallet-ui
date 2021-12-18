@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as hdcore from 'hdcore-ts';
 import { Tooltip, IconButton } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
@@ -17,12 +17,19 @@ const HDWallet = () => {
   const [accounts, setAccounts] = useState([]);
 
   const fetchFromLocalStorage = () => {
-    const seed = localStorage.getItem('seed');
-    const childWallets = localStorage.getItem('childWallets');
+    const mnem = localStorage.getItem('mnemonic');
+    const seeds = hdcore.account.createSeed(mnem);
+
+    // const seed = localStorage.getItem('seed');
+    const arr = localStorage.getItem('childWallets');
+    console.log(arr);
+    if (!arr) return;
+
+    const childWallets = JSON.parse(arr);
     let children = [];
     for (let child of childWallets) {
       const newPath = hdcore.account.getPath(501, child.index);
-      const newChild = hdcore.account.createChildAccount('501', seed, newPath);
+      const newChild = hdcore.account.createChildAccount('501', seeds, newPath);
       children.push({ pub: newChild.pub, prv: newChild.prv, purpose: child.purpose, index: child.index });
     }
     setAccounts(children);
@@ -33,7 +40,9 @@ const HDWallet = () => {
     for (let account of accounts) {
       children.push({ purpose: account.purpose, index: account.index });
     }
-    localStorage.setItem('childWallets', children);
+
+    const childWallets = JSON.stringify(children);
+    localStorage.setItem('childWallets', childWallets);
   }
 
   const createChild = (index, purpose) => {
@@ -41,6 +50,7 @@ const HDWallet = () => {
     const newChild = hdcore.account.createChildAccount('501', seed, newPath);
     accounts.push({ pub: newChild.pub, prv: newChild.prv, purpose, index });
     setAccounts(accounts);
+    saveToLocalStorage();
   }
 
   // Fetch from localStorage
@@ -54,8 +64,12 @@ const HDWallet = () => {
   const path = hdcore.account.getPath(501, DEFAULT_CHILD); // ("m/44'/501'/0'/0'/2021'")
   const default_child = hdcore.account.createChildAccount('501', seed, path);
 
-  /***  SERVER  ***/
-  createDefault(getAddress(default_child.pub));
+  useEffect(() => {
+    fetchFromLocalStorage();
+
+    /***  SERVER  ***/
+    createDefault(getAddress(default_child.pub));
+  }, [])
 
   return <div className='hd-wallet'>
     <div className="hero-container">

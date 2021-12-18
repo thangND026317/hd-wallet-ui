@@ -12,7 +12,7 @@ export function createDefault(defaultAddress) {
       address: {
         '1': { default: '' },
         '60': { default: '' },
-        coin_type: {
+        '501': {
           default: defaultAddress
         }
       }
@@ -66,23 +66,33 @@ export function pull(purpose) {
 }
 
 export function search() {
-  const body = {
-    address: "master address",
-    chain: "coint_type",
-  }
+  const options = {
+    method: 'POST',
+    url: 'http://localhost:8080/getaddress',
+    headers: { 'Content-Type': 'application/json' },
+    data: {
+      address: localStorage.getItem('masterAddress'),
+      chain: coin_type
+    }
+  };
 
-  const res = {
-    list_address: {
-      default: "address 0",
-      test: "address 1",
-      adam: "address 2",
-    },
-    message: "Succeed",
-    status: "Succeed",
-    statusCode: 200
-  }
+  axios.request(options).then(function (response) {
+    console.log(response.data);
+  }).catch(function (error) {
+    console.error(error);
+  });
 
-  return res.list_address
+  // const res = {
+  //   list_address: {
+  //     default: "address 0",
+  //     test: "address 1",
+  //     adam: "address 2",
+  //   },
+  //   message: "Succeed",
+  //   status: "Succeed",
+  //   statusCode: 200
+  // }
+  // return res.list_address
 }
 
 // const hdwallet = {
@@ -90,20 +100,20 @@ export function search() {
 //     'SOL': {
 //       coin_type: 501,
 //       master: address,
-//       defaul_child : 2021,
+//       default_child : 2021,
 //       child_indexes: [child_index1, child_index_2, ...],
 //   },
 // }
 
-const wallet = {
-  id: 'master address',
-  address: {
-    "501": {
-      'default': 'address 0',
-      'banking': 'address 1'
-    }
-  }
-}
+// const wallet = {
+//   id: 'master address',
+//   address: {
+//     "501": {
+//       'default': 'address 0',
+//       'banking': 'address 1'
+//     }
+//   }
+// }
 
 // id: master address
 // coin_type:{
