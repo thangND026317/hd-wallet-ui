@@ -6,11 +6,18 @@ import './Modal.css';
 
 const Modal = ({ children, open, onClose, onConfirm }) => {
   const [input, setInput] = useState('');
+  const [purpose, setPurpose] = useState('');
 
-  const handleOnChange = event => setInput(event.target.value);
+  const handleOnConfirm = () => {
+    onConfirm(input, purpose);
+    setInput('');
+    setPurpose('');
+    onClose();
+  }
 
-  const handleOnConfirm = (index) => {
-    onConfirm(index);
+  const handleOnClose = () => {
+    setInput('');
+    setPurpose('');
     onClose();
   }
 
@@ -24,22 +31,29 @@ const Modal = ({ children, open, onClose, onConfirm }) => {
       <input
         id='child-index'
         type="tel"
-        onChange={handleOnChange}
+        onChange={event => setInput(event.target.value)}
         value={input}
+      />
+      <label htmlFor='purpose'>Purpose</label>
+      <input
+        id='purpose'
+        type="tel"
+        onChange={event => setPurpose(event.target.value)}
+        value={purpose}
       />
 
       <div className="modal-btns">
         <Button className='btn'
           buttonStyle='btn--outline'
           buttonSize='btn--medium'
-          onClick={onClose}
+          onClick={handleOnClose}
         >
           Cancel
         </Button>
         <Button className='btn'
           buttonStyle='btn--primary'
           buttonSize='btn--medium'
-          onClick={() => handleOnConfirm(input)}
+          onClick={handleOnConfirm}
         >
           Confirm
         </Button>

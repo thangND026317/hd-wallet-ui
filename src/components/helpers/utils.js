@@ -1,11 +1,26 @@
 import * as hdcore from 'hdcore-ts';
 
-const SOLANA_COIN_TYPE = '501';
+const coin_type = '501';
+const coinType = 501;
+const DEFAULT_CHILD = 2021;
 const acc = hdcore.account;
-const transaction = acc.getTransaction(SOLANA_COIN_TYPE);
+const transaction = acc.getTransaction(coin_type);
 
 export function getAddress(pubkey) {
-  return acc.getAddress(pubkey, SOLANA_COIN_TYPE);
+  return acc.getAddress(pubkey, coin_type);
+}
+
+export function getPath(index = DEFAULT_CHILD) {
+  return acc.getPath(coinType, index);
+}
+
+export function createMasterWallet(seed) {
+  return acc.createMasterAccount(coin_type, seed);
+}
+
+export function createChildWallet(seed, index = DEFAULT_CHILD) {
+  const path = getPath(index);
+  return acc.createChildAccount(coin_type, seed, path);
 }
 
 export async function getBalance(pubkey) {

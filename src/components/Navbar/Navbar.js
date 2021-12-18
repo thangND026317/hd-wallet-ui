@@ -8,9 +8,13 @@ import './Navbar.css';
 const Navbar = () => {
   const [click, setClick] = useState(false);
   const [button, setButton] = useState(true);
+  const [deletePopup, setDeletePopup] = useState(false);
 
-  const handleClick = () => setClick(!click);
-  const closeMobileMenu = () => setClick(false);
+  const onDelete = () => {
+    setDeletePopup(true);
+
+    localStorage.clear();
+  }
 
   const showButton = () => {
     if (window.innerWidth <= 960) {
@@ -26,37 +30,27 @@ const Navbar = () => {
 
   window.addEventListener('resize', showButton);
 
-  return (
-    <Fragment>
-      <nav className="navbar">
-        <div className="navbar-container">
-          <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
-            HD WALLET
-          </Link>
-          <div className="menu-icon" onClick={handleClick}>
-            <i className={click ? "fas fa-times" : "fas fa-bars"} />
-          </div>
-
-          <ul className={click ? "nav-menu active" : "nav-menu"}>
-            <li className="nav-item">
-              <Link to="/" className="nav-links" onClick={closeMobileMenu}>Home</Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/create-wallet" className="nav-links" onClick={closeMobileMenu}>Create wallet</Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/import-wallet" className="nav-links" onClick={closeMobileMenu}>Import Wallet</Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/hd-wallet" className="nav-links-mobile" onClick={closeMobileMenu}>HD Wallet</Link>
-            </li>
-          </ul>
-
-          {button && <Button buttonStyle='btn--outline' to='/hd-wallet'>HD Wallet</Button>}
+  return <Fragment>
+    <nav className="navbar">
+      <div className="navbar-container">
+        <h1>HD WALLET</h1>
+        <div className="menu-icon" onClick={() => setClick(!click)}>
+          <i className={click ? "fas fa-times" : "fas fa-bars"} />
         </div>
-      </nav>
-    </Fragment>
-  )
+
+        <ul className={click ? "nav-menu active" : "nav-menu"}>
+          <li className="nav-item">
+            <Link to="/" className="nav-links-mobile" onClick={() => setClick(false)}>Delete Wallet</Link>
+          </li>
+        </ul>
+
+        {button && <Button buttonStyle='btn--outline' to='/' onClick={() => setDeletePopup(true)}>Delete Wallet</Button>}
+
+      </div>
+    </nav>
+
+    {/* <DeleteModal open={popup} onClose={() => setPopup(false)} onConfirm={onConfirm} /> */}
+  </Fragment>
 }
 
 export default Navbar;

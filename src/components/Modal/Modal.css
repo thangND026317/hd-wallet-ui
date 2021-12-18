@@ -14,13 +14,12 @@
 .modal-container {
   width: 500px;
   height: 500px;
-  /* display: flex;
-  align-items: center;
-  justify-content: space-evenly; */
   border-radius: 12px;
   background-color: black;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   display: flex;
+  /* align-items: center;
+  justify-content: space-evenly; */
   flex-direction: column;
   padding: 25px;
 }

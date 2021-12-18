@@ -8,19 +8,16 @@ import SendIcon from '@mui/icons-material/Send';
 import ReceiveIcon from '@mui/icons-material/WorkOutline';
 
 import SendModal from '../Modal/SendModal';
-import { getAddress, getBalance, getAirdrop, sendTransaction } from '../helpers/utils';
+import { getAddress, getBalance, getAirdrop, sendTransaction, getPath } from '../helpers/utils';
 
 import './AccountList.css';
 
-const AccountList = ({ pub, prv }) => {
+const AccountList = ({ pub, prv, purpose, childIndex = 0 }) => {
   const [balance, setBalance] = useState(0);
   const [expanding, setExpanding] = useState(false);
   const [airdropping, setAirdropping] = useState(false);
   const [sending, setSending] = useState(false);
   const [popup, setPopup] = useState(false);
-
-  const openPopup = () => setPopup(true);
-  const closePopup = () => setPopup(false);
 
   const refreshBalance = async () => {
     setBalance(await getBalance(pub));
@@ -35,7 +32,7 @@ const AccountList = ({ pub, prv }) => {
 
   const onConfirm = async (receiverAddress, amount) => {
     setSending(true);
-    await sendTransaction(pub, prv, receiverAddress,amount);
+    await sendTransaction(pub, prv, receiverAddress, amount);
     setSending(false);
     refreshBalance();
   }
@@ -50,6 +47,12 @@ const AccountList = ({ pub, prv }) => {
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           {getAddress(pub)}
         </Typography>
+        {(childIndex !== 0) &&
+          <Typography variant="p" component="div" sx={{ flexGrow: 1, fontSize: 16 }}>
+            {getPath(childIndex)}
+          </Typography>
+        }
+
 
         <Tooltip title="Push" arrow>
           <IconButton
@@ -99,7 +102,7 @@ const AccountList = ({ pub, prv }) => {
           }}>
           <ListItemText
             primary={`${balance} SOL`}
-          // secondary={keypair} 
+            secondary={purpose}
           />
           {expanding ? <ExpandLess /> : <ExpandMore />}
         </ListItemButton>
@@ -121,14 +124,22 @@ const AccountList = ({ pub, prv }) => {
           variant="outlined"
           color="primary"
           startIcon={<SendIcon />}
-          onClick={openPopup}
+          onClick={() => setPopup(true)}
           disabled={sending}
         >
           {!sending ? "Send" : "Sent"}
         </Button>
-      </div>}
+      </div>
+      }
     </List>
-    {popup && <SendModal open={popup} onClose={closePopup} onConfirm={onConfirm} />}
+
+    <SendModal
+      open={popup}
+      onClose={() => setPopup(false)}
+      onConfirm={onConfirm}
+    >
+      Send SOL
+    </SendModal>
   </Paper>
 }
 

@@ -10,6 +10,14 @@ const SendModal = ({ children, open, onClose, onConfirm }) => {
 
   const handleOnConfirm = () => {
     onConfirm(address, amount);
+    setAddress('');
+    setAmount('');
+    onClose();
+  }
+
+  const handleOnClose = () => {
+    setAddress('');
+    setAmount('');
     onClose();
   }
 
@@ -39,7 +47,7 @@ const SendModal = ({ children, open, onClose, onConfirm }) => {
         <Button className='btn'
           buttonStyle='btn--outline'
           buttonSize='btn--medium'
-          onClick={onClose}
+          onClick={handleOnClose}
         >
           Cancel
         </Button>
