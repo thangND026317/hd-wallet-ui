@@ -67,34 +67,25 @@ export function pull(purpose, address) {
   });
 }
 
-export function search() {
+export function search(masterAddress) {
   const options = {
     method: 'POST',
     url: 'http://localhost:8080/getaddress',
     headers: { 'Content-Type': 'application/json' },
     data: {
-      address: localStorage.getItem('masterAddress'),
+      address: masterAddress,
       chain: coin_type
     }
   };
 
+  let result = undefined;
   axios.request(options).then(function (response) {
-    console.log(response.data);
+    result = response.data.list_address;
   }).catch(function (error) {
     console.error(error);
   });
 
-  // const res = {
-  //   list_address: {
-  //     default: "address 0",
-  //     test: "address 1",
-  //     adam: "address 2",
-  //   },
-  //   message: "Succeed",
-  //   status: "Succeed",
-  //   statusCode: 200
-  // }
-  // return res.list_address
+  return result;
 }
 
 // const hdwallet = {

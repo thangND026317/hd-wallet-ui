@@ -40,7 +40,6 @@ const AccountList = ({ pub, prv, purpose, childIndex = 0 }) => {
 
   useEffect(() => {
     refreshBalance();
-    search();
   }, []);
 
   return <Paper style={{ width: '80%', marginTop: '20px' }}>
