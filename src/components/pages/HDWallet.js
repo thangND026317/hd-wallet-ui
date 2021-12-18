@@ -22,7 +22,6 @@ const HDWallet = () => {
 
     // const seed = localStorage.getItem('seed');
     const arr = localStorage.getItem('childWallets');
-    console.log(arr);
     if (!arr) return;
 
     const childWallets = JSON.parse(arr);

@@ -9,6 +9,7 @@ import ReceiveIcon from '@mui/icons-material/WorkOutline';
 
 import SendModal from '../Modal/SendModal';
 import { getAddress, getBalance, getAirdrop, sendTransaction, getPath } from '../helpers/utils';
+import { push, pull, search } from '../helpers/api';
 
 import './AccountList.css';
 
@@ -39,6 +40,7 @@ const AccountList = ({ pub, prv, purpose, childIndex = 0 }) => {
 
   useEffect(() => {
     refreshBalance();
+    search();
   }, []);
 
   return <Paper style={{ width: '80%', marginTop: '20px' }}>
@@ -60,6 +62,7 @@ const AccountList = ({ pub, prv, purpose, childIndex = 0 }) => {
             edge="start"
             color="inherit"
             aria-label="menu"
+            onClick={() => push(purpose)}
           >
             <ArrowUpwardIcon />
           </IconButton>
@@ -71,6 +74,7 @@ const AccountList = ({ pub, prv, purpose, childIndex = 0 }) => {
             edge="start"
             color="inherit"
             aria-label="menu"
+            onClick={() => pull(purpose)}
           >
             <ArrowDownwardIcon />
           </IconButton>
