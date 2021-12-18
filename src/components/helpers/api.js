@@ -1,45 +1,60 @@
 import axios from "axios";
 
+const coin_type = '501';
+
 export function createDefault() {
-  const body = {
-    "_id": "tess1231",
-    "address": {
-      "1": {
-        "default": ""
-      },
-      "60": {
-        "default": ""
-      },
-      "501": {
-        "default": "wallet3"
+  const options = {
+    method: 'POST',
+    url: 'http://localhost:8080/createdefault',
+    headers: { 'Content-Type': 'application/json' },
+    data: {
+      _id: localStorage.getItem('masterAddress'),
+      address: {
+        '1': { default: '' },
+        '60': { default: '' },
+        coin_type: {
+          default: 'wallet3'
+        }
       }
     }
-  }
+  };
+
+  axios.request(options).then(function (response) {
+    console.log(response.data);
+  }).catch(function (error) {
+    console.error(error);
+  });
 }
 
-export function push() {
-  const body = {
-    "address": "master address",
-    "chain": "501",
-    "purpose": "test1"
-  }
+export function push(purpose) {
+  const options = {
+    method: 'POST',
+    url: 'http://localhost:8080/pushaddress',
+    headers: { 'Content-Type': 'application/json' },
+    data: {
+      address: localStorage.getItem('masterAddress'),
+      chain: coin_type,
+      purpose: purpose
+    }
+  };
+
+  axios.request(options).then(function (response) {
+    console.log(response.data);
+  }).catch(function (error) {
+    console.error(error);
+  });
 }
 
-export function pull() {
-  const body = {
-    "address": "master address",
-    "chain": "501",
-    "purpose": "test1"
-  }
 
+export function pull(purpose) {
   const options = {
     method: 'POST',
     url: 'http://localhost:8080/deleteaddress',
     headers: { 'Content-Type': 'application/json' },
     data: {
       address: 'master address',
-      chain: '501',
-      purpose: 'testing'
+      chain: coin_type,
+      purpose: purpose
     }
   };
 

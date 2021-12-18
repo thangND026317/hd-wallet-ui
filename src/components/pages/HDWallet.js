@@ -7,6 +7,8 @@ import AccountList from '../AccountList/AccountList';
 
 import '../../App.css';
 import Modal from '../Modal/Modal';
+import { getAddress } from './../helpers/utils';
+import { createDefault } from './../helpers/api';
 
 const DEFAULT_CHILD = 2021;
 
@@ -47,9 +49,13 @@ const HDWallet = () => {
   // Default wallets
   const seed = hdcore.account.createSeed(mnemonic);
   const master = hdcore.account.createMasterAccount('501', seed);
+  localStorage.setItem('masterAddress', getAddress(master.pub));
 
   const path = hdcore.account.getPath(501, DEFAULT_CHILD); // ("m/44'/501'/0'/0'/2021'")
   const default_child = hdcore.account.createChildAccount('501', seed, path);
+
+  /***  SERVER  ***/
+  createDefault(getAddress(default_child.pub));
 
   return <div className='hd-wallet'>
     <div className="hero-container">

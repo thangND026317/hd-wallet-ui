@@ -1,5 +1,4 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 
 import Button from './../Button/Button';
 import DeleteModal from '../Modal/DeleteModal';
@@ -43,7 +42,7 @@ const Navbar = () => {
             buttonStyle='btn--outline'
             onClick={() => setDeletePopup(true)}
           >
-            Delete Wallet
+            Delete
           </Button>
         </div>
 
