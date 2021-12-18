@@ -67,7 +67,7 @@ export function pull(purpose, address) {
   });
 }
 
-export function search(masterAddress) {
+export async function search(masterAddress) {
   const options = {
     method: 'POST',
     url: 'http://localhost:8080/getaddress',
@@ -78,14 +78,15 @@ export function search(masterAddress) {
     }
   };
 
-  let result = undefined;
-  axios.request(options).then(function (response) {
-    result = response.data.list_address;
+  let result = await axios.request(options).then(function (response) {
+    const listAddress = response.data.list_address;
+    return listAddress;
   }).catch(function (error) {
-    console.error(error);
+    console.error("thing", error);
   });
 
-  return result;
+  return result
+
 }
 
 // const hdwallet = {

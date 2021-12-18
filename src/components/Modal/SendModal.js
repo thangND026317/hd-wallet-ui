@@ -38,10 +38,12 @@ const SendModal = ({ children, open, onClose, onConfirm }) => {
     onClose();
   }
 
-  const handleSearch = (event) => {
+  const handleSearch = async (event) => {
     if (event.key === 'Enter') {
       // if (searchTerm.length < 3) return;
-      const res = search(searchTerm);
+      // console.log(searchTerm)
+      const res = await search(searchTerm);
+      console.log(res)
       const dataArr = Object.entries(res).map(([purpose, address]) => {
         return { purpose: purpose, address: address };
       });
