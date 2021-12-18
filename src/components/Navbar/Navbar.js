@@ -48,12 +48,17 @@ const Navbar = () => {
         </div>
 
         {/* Web interface */}
-        <ul className={click ? "nav-menu active" : "nav-menu"}>
+        {button && <ul className={click ? "nav-menu active" : "nav-menu"}>
           <li className="nav-item">
-            <Button className="menu-icon" onClick={() => setClick(false)}>Delete</Button>
+            <Button
+              className="menu-icon"
+              buttonStyle='btn--outline'
+              onClick={() => setDeletePopup(true)}
+            >
+              Delete</Button>
           </li>
         </ul>
-
+        }
 
       </div>
     </nav>

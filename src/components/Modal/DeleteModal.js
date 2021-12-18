@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import ReactDom from 'react-dom';
 import Button from '../Button/Button';
 
@@ -11,7 +11,7 @@ const DeleteModal = ({ children, open, onClose, onConfirm }) => {
     <div className="modal-container">
       <h1>{children}</h1>
       <br />
-      <p>You will not be able to recover the current accounts without the seed phrase, and the account private key. This action will delete all current accounts from your browser. Are you sure?</p>
+      <p>You will not be able to recover the current wallets without the seed phrase. This action will delete all current wallets from your browser. Are you sure?</p>
       <div className="modal-btns">
         <Button className='btn'
           buttonStyle='btn--outline'
