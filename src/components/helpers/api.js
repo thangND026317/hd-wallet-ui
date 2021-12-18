@@ -2,7 +2,7 @@ import axios from "axios";
 
 const coin_type = '501';
 
-export function createDefault() {
+export function createDefault(defaultAddress) {
   const options = {
     method: 'POST',
     url: 'http://localhost:8080/createdefault',
@@ -13,7 +13,7 @@ export function createDefault() {
         '1': { default: '' },
         '60': { default: '' },
         coin_type: {
-          default: 'wallet3'
+          default: defaultAddress
         }
       }
     }
