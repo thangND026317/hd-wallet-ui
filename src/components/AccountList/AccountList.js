@@ -44,14 +44,14 @@ const AccountList = ({ pub, prv, purpose, childIndex = 0 }) => {
   return <Paper style={{ width: '80%', marginTop: '20px' }}>
     <AppBar position="static" color="default" elevation={1}>
       <Toolbar>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontSize: 18, display: 'block' }}>
           {getAddress(pub)}
+          {(childIndex !== 0) &&
+            <Typography variant="subtitle1" component="div" sx={{ flexGrow: 1, fontSize: 14, display: 'block' }}>
+              {getPath(childIndex)}
+            </Typography>
+          }
         </Typography>
-        {(childIndex !== 0) &&
-          <Typography variant="p" component="div" sx={{ flexGrow: 1, fontSize: 16 }}>
-            {getPath(childIndex)}
-          </Typography>
-        }
 
 
         <Tooltip title="Push" arrow>
