@@ -1,16 +1,17 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState } from 'react';
 
 import Button from './../Button/Button';
 import DeleteModal from '../Modal/DeleteModal';
 
 import './Navbar.css';
 
-const Navbar = () => {
+const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
   const [deletePopup, setDeletePopup] = useState(false);
 
   const onDelete = () => {
     setDeletePopup(true);
     localStorage.clear();
+    setIsLoggedIn(false);
     setDeletePopup(false);
   }
 
@@ -19,7 +20,7 @@ const Navbar = () => {
       <div className="navbar-container">
         <h1 className="navbar-left">HD WALLET</h1>
 
-        {localStorage.getItem('mnemonic') &&
+        {isLoggedIn &&
           <div className="navbar-right">
             <Button
               buttonStyle='btn--outline'

@@ -12,7 +12,7 @@ import { createDefault } from './../helpers/api';
 
 const DEFAULT_CHILD = 2021;
 
-const HDWallet = () => {
+const HDWallet = ({ setIsLoggedIn }) => {
   const [openModal, setOpenModal] = useState(false);
   const [accounts, setAccounts] = useState([]);
 
@@ -48,7 +48,7 @@ const HDWallet = () => {
     const newPath = hdcore.account.getPath(501, index);
     const newChild = hdcore.account.createChildAccount('501', seed, newPath);
 
-    if (accounts.find(acc => acc.index == index)) return;
+    if (accounts.find(acc => Number(acc.index) === index)) return;
 
     accounts.push({ pub: newChild.pub, prv: newChild.prv, purpose, index });
     setAccounts(accounts);
@@ -68,6 +68,9 @@ const HDWallet = () => {
 
   useEffect(() => {
     fetchFromLocalStorage();
+
+    // Update login status
+    setIsLoggedIn(true);
 
     /***  SERVER  ***/
     if (!localStorage.getItem('default-created')) {
